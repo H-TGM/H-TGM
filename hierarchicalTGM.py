@@ -1,10 +1,6 @@
 import TensorClustModSparse
 import numpy as np
 import Cluster_Ensembles.Cluster_Ensembles as CE
-from scipy import sparse
-from sklearn.utils import check_random_state, check_array
-import tensorflow as tf
-from coclust.coclustering import CoclustMod
 import networkx as nx
 import tensorflow as tf
 from tensorflow.python.client import device_lib
@@ -18,7 +14,6 @@ def modularity_byhands(adjMatrix, Nclust, vector_clustering):
     G = nx.from_numpy_matrix(adjMatrix)
     MM = nx.modularity_matrix(G)
 
-    # c = len(np.unique(vector_clustering))
     W = np.zeros((n, Nclust))
     minvector_clustering = np.amin(vector_clustering)
     print('n', n)
@@ -126,9 +121,7 @@ class HTGM():
             b[np.arange(phiK.size), phiK] = 1
             matrixConsensus = matrixConsensus + b.dot(b.T)
 
-        # modelConsenus = CoclustMod(n_clusters=self.n_clusters[0], max_iter=100)
-        # modelConsenus.fit(matrixConsensus)
-        # consensus_clustering_labels = modelConsenus.row_labels_
+
         print('cluster_runs', cluster_runs.shape)
         print('message', self.n_clusters[0])
         consensus_clustering_labels = CE.cluster_ensembles(cluster_runs, verbose=True,
@@ -176,9 +169,6 @@ class HTGM():
                     b[np.arange(phiK.size), phiK] = 1
                     matrixConsensus = matrixConsensus + b.dot(b.T)
 
-                # modelConsenus = CoclustMod(n_clusters=self.n_clusters[k], max_iter=100)
-                # modelConsenus.fit(matrixConsensus)
-                # consensus_clustering_labels = modelConsenus.row_labels_
                 consensus_clustering_labels = CE.cluster_ensembles(cluster_runs, verbose=True,
                                                                    nclass=self.n_clusters[k])
 
@@ -214,7 +204,7 @@ class HTGM():
 
             listModularitiesLevel.append(modularityC)
 
-            # listModularitiesLevel.append(np.sum(listModularitiesClust) / len(listModularitiesClust))
+
             modularitiesIterLevel.append(modularitiesIterClust)
             hierarchical_label.append(newLevel)
             actuelCLustering = np.asarray(newLevel)
