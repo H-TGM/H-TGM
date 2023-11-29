@@ -51,9 +51,9 @@ def purity_score(y_true, y_pred):
 
 bdd_name = ["DBPEDIA","Github_BIO_IA", "NYT_33_2K","Yelp_5K"]
 
-path_global = '/H-TGM/data/HTGM-Data/'
-path_dataframe = '/H-TGM/data/HTGM-Data/Data_processed/'
-path_to_save       = '/H-TGM/data/HTGM-Data/Resultats/'
+path_global = './H-TGM/data/HTGM-Data/'
+path_dataframe = './H-TGM/data/HTGM-Data/Data_processed/'
+path_to_save       = './H-TGM/data/HTGM-Data/Resultats/'
 nom_dossier_matriceSim = "Sim_sparse"
 nom_couches = ['BOW', 'XLNET', 'SKIPGRAM','entityEmbeding', "sentence_embeddings"]
 
